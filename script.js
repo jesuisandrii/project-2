@@ -1,24 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const sidebarLinks = document.querySelectorAll(".sidebar-nav a, .nav a"); // Посилання в меню
+    const sidebarLinks = document.querySelectorAll(".sidebar-nav a, .nav a");
     const overlay = document.querySelector(".overlay");
     const sidebar = document.querySelector(".sidebar");
 
-    // Прокручуємо на початок при переході до #home
     sidebarLinks.forEach(link => {
         link.addEventListener("click", (event) => {
             const targetId = link.getAttribute("href").substring(1);
 
             if (targetId === "home") {
-                event.preventDefault(); // Забороняємо стандартний перехід
+                event.preventDefault();
                 window.scrollTo({
                     top: 0,
-                    behavior: "smooth" // Плавний скрол
+                    behavior: "smooth"
                 });
             }
         });
     });
 
-    // Додатково закриваємо меню та overlay
     sidebarLinks.forEach(link => {
         link.addEventListener("click", () => {
             sidebar.classList.remove("open");
@@ -59,7 +57,7 @@ links.forEach(link => {
     const nextBtn = document.querySelector(".slider-btn.next");
 
     let currentIndex = 0;
-    const slideInterval = 3000; // Час між змінами слайдів (в мілісекундах)
+    const slideInterval = 3000;
     let autoScroll;
 
     const updateSlider = () => {
@@ -79,12 +77,11 @@ links.forEach(link => {
         clearInterval(autoScroll);
     };
 
-    // Кнопки навігації
     prevBtn.addEventListener("click", () => {
         stopAutoScroll(); // Зупиняємо автопрокрутку на час дії користувача
         currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
         updateSlider();
-        startAutoScroll(); // Перезапускаємо автопрокрутку
+        startAutoScroll(); 
     });
 
     nextBtn.addEventListener("click", () => {
@@ -93,11 +90,9 @@ links.forEach(link => {
         startAutoScroll();
     });
 
-    // Додатковий функціонал: пауза при наведенні миші
     sliderContainer.addEventListener("mouseenter", stopAutoScroll);
     sliderContainer.addEventListener("mouseleave", startAutoScroll);
 
-    // Запускаємо автопрокрутку при завантаженні сторінки
     startAutoScroll();
 
 
@@ -107,28 +102,24 @@ links.forEach(link => {
     const overlay = document.querySelector(".overlay");
     const sidebarLinks = document.querySelectorAll(".sidebar-nav a");
 
-    // Відкриття панелі
     burgerMenu.addEventListener("click", () => {
         sidebar.classList.add("open");
         overlay.classList.add("show");
     });
 
-    // Закриття панелі
     closeMenu.addEventListener("click", () => {
         sidebar.classList.remove("open");
         overlay.classList.remove("show");
     });
 
-    // Закриття панелі при натисканні на затемнення
     overlay.addEventListener("click", () => {
         sidebar.classList.remove("open");
         overlay.classList.remove("show");
     });
 
-    // Закриття панелі та плавне прокручування до секції при натисканні на посилання
     sidebarLinks.forEach(link => {
         link.addEventListener("click", (event) => {
-            event.preventDefault(); // Запобігаємо стандартному переходу
+            event.preventDefault();
             const targetId = link.getAttribute("href").substring(1);
             const targetSection = document.getElementById(targetId);
 
@@ -139,7 +130,7 @@ links.forEach(link => {
             // Плавне прокручування
             targetSection.scrollIntoView({
                 behavior: "smooth",
-                block: "start" // Прокручуємо до початку секції
+                block: "start"
             });
         });
     });
