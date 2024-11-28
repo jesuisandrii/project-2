@@ -49,40 +49,6 @@ links.forEach(link => {
 //     });
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const serviceCards = document.querySelectorAll(".card");
-    const modals = document.querySelectorAll(".modal");
-    const closeButtons = document.querySelectorAll(".close-modal");
-
-    // Відкриття модального вікна
-    serviceCards.forEach(card => {
-        card.addEventListener("click", () => {
-            const service = card.getAttribute("data-service");
-            const modal = document.getElementById(service);
-            if (modal) {
-                modal.style.display = "flex";
-            }
-        });
-    });
-
-    // Закриття модального вікна
-    closeButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            button.closest(".modal").style.display = "none";
-        });
-    });
-
-    // Закриття модального вікна при кліку на фон
-    modals.forEach(modal => {
-        modal.addEventListener("click", (event) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        });
-    });
-});
-
-
 
 
     const sliderContainer = document.querySelector(".slider-container");
@@ -168,6 +134,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    const ctaButtons = document.querySelectorAll(".cta");
+
+    ctaButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault(); // Запобігаємо стандартному переходу
+
+            const targetId = button.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: "smooth", // Плавний скрол
+                    block: "start" // Прокрутка до початку форми
+                });
+            }
+        });
+    });
+
 
 
 
